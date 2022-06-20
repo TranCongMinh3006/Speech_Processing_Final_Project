@@ -5,6 +5,10 @@ header,
     height: 700px;
 }
 
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
 @media (max-width: 740px) {
     html,
     body,

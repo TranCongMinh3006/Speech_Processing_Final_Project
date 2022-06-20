@@ -10,26 +10,6 @@ navigator.mediaDevices.getUserMedia({audio: true}).then(stream => {
     handlerFunction(stream)
 });
 
-const handleSearchTopVideo = (title = 'lalung') => {
-  const url = `${baseUrl}search?key=${apiKey}&type=video&part=snippet&q=${title}&maxResults=5`;
-  $.ajax({
-    type: 'GET',
-    url: url,
-    dataType: 'json',
-    cache: false,
-    success: function(result) {
-      console.log(result.items)
-      $('.videos-wrapper').prepend(`<h3 class="text-center font-italic">Nghe thử bài hát</h3>`)
-      result.items.forEach(item => {
-        const video = `
-        <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/${item.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        `
-        $('#videos').append(video)
-      })
-    }
-  })
-}
-
 const handleSearch = (title = 'lalung') => {
   const url = `${baseUrl}search?key=${apiKey}&type=video&part=snippet&q=${title}&maxResults=5`;
   $.ajax({
@@ -50,7 +30,7 @@ const handleSearch = (title = 'lalung') => {
   })
 }
 
-handleSearch('lalung')
+// handleSearch('lalung')
 
 function handlerFunction(stream) {
   rec = new MediaRecorder(stream);
@@ -90,7 +70,7 @@ function sendData(data) {
         let item = '<h2 class="font-italic text-center h2 my-5" id="song_name" style="color: #333" >' + song_name + '</h2>';
         $('#container-body').append(item);
         $('#song_name').show();
-        handleSearch(song_name);
+        // handleSearch(song_name);
       }
     }
   }).done(function(data) {
@@ -99,9 +79,11 @@ function sendData(data) {
 }
 
 $('#record').on('click', function () {
+  console.log('start');
   $('#song_name').remove();
   $('#record').disabled = true;
   $('#record')[0].classList.replace("btn-red", "btn-blue");
+  // $('.fa-microphone-alt')[0].style = {'background-color': '#fc5335'};
   $('#stop').disabled = false;
   audioChunks = [];
   rec.start();
@@ -114,6 +96,22 @@ $('#stop').on('click', function () {
   rec.stop();
 });
 
-
-
-console.log('alo');
+// const handleSearchTopVideo = (title = 'lalung') => {
+//   const url = `${baseUrl}search?key=${apiKey}&type=video&part=snippet&q=${title}&maxResults=5`;
+//   $.ajax({
+//     type: 'GET',
+//     url: url,
+//     dataType: 'json',
+//     cache: false,
+//     success: function(result) {
+//       console.log(result.items)
+//       $('.videos-wrapper').prepend(`<h3 class="text-center font-italic">Nghe thử bài hát</h3>`)
+//       result.items.forEach(item => {
+//         const video = `
+//         <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/${item.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+//         `
+//         $('#videos').append(video)
+//       })
+//     }
+//   })
+// }
