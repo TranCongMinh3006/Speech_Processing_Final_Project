@@ -65,8 +65,21 @@ Ví dụ như:
         * align_matches trong music_matching/__init__.py:
           + Trả về song_id của bài nhạc có giao nhiều fingerprint nhất của tất cả khoảng chênh lệch thời gian
 # Thực nghiệm, đánh giá
-
+- Thời gian trích xuất 150 bài hát để lưu vào cơ sở dữ liệu hết 6 tiếng
+- 
 # Hướng dẫn sử dụng Web
+- Các ngôn ngữ và công cụ sử dụng cho dự án : python, nodejs, mysql
+- Để chạy được dự án chúng ta cần cài biến mô trường cho ffmeg
+- Để chạy được phần thuật toán chính của dự án ta cần cài các thư viện đã được liệt kê trong file requirement.txt bằng câu lệnh:
+ 
+    $ pip install -r requirement.txt
+- Để chạy phần giao diện web ta cần cài đặt các thư viện cần thiết bằng câu lệnh
+
+    $ npm install
+- cuối cùng chạy lệnh sau đểu bắt đầu chạy dự án:
+
+    $ npm start
+
 
 # Tham khảo
 [Christophe/How does Shazam work](http://coding-geek.com/how-shazam-works/)
