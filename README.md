@@ -1,8 +1,8 @@
 # Speech_Processing_Final_Project - Nhóm 2
 
 # Phân công công việc
-+ Hoàng Phương Linh - Tìm hiểu và viết báo cáo nguyên lý hoạt động, mô hình lý thuyết, cài đặt, đánh giá
-+ Trần Công Minh - Thực nghiệm, chạy mô hình, quay video, kết hợp frontend và backend
++ Hoàng Phương Linh - Tìm hiểu và viết báo cáo nguyên lý hoạt động, mô hình lý thuyết, cài đặt
++ Trần Công Minh - Thực nghiệm, chạy mô hình, quay video, kết hợp frontend và backend, đánh giá
 + Cao Cẩm Nhung - Thu thập và xử lý dữ liệu
 + Nguyễn Mạnh Tuấn - Viết frontend, kết hợp frontend và backend
 
