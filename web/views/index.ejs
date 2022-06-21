@@ -7,6 +7,9 @@
     <title>Music Recognition</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
@@ -26,26 +29,34 @@
     </style>
 </head>
 
-<body class="frozen-dreams-gradient">
+<!-- <body class="frozen-dreams-gradient"> -->
+<body style="background: url('/img/Midomi_Background.png')">
 
 <!--Main Navigation-->
 <header>
     <!-- Intro Section -->
-        <div class="d-flex align-items-center p-3">
-            <img src="/img/logo.jpeg" alt="logo" style="width: 60px; border-radius: 50%" />
-            <h2 class="ml-3 font-weight-bold">Song Detection</h2>
+        <div class="d-flex align-items-center justify-content-between p-5">
+            <div class="d-flex align-items-center ml-5">
+                <img src="/img/logo.jpeg" alt="logo" style="width: 60px; border-radius: 50%" />
+                <div>
+                    <h2 class="ml-3 font-weight-bold mb-0" style="color: #fc9a35">ToriMusic</h2>
+                    <p class="ml-3 mb-0" style="color: grey; font-size: 12px">Powered by <span class="font-italic" style="font-weight: 700">Nhom2</span></p>
+                </div>
+            </div>
+            <div class="d-flex align-items-center h4 mr-5" style="font-family: 'Roboto', sans-serif; color: #fc9a35">Về chúng tôi</div>
         </div>
-        <div style="color: white; background: url('/img/hdbg.jpeg') no-repeat top left ; background-size: cover">
+        <div style="color: white;">
+        <!-- <div style="color: white; background: url('/img/hdbg.jpeg') no-repeat top left ; background-size: cover"> -->
             <!-- <video autoplay="true" mute loop style="width: 100%; height: 300px">
                 <source src="img/bgvid.mp4" />
             </video> -->
             <div class="container d-flex justify-content-center align-items-center">
                 <div class="row pt-3 mt-3">
-                    <div class="col-md-12 wow fadeIn mb-3">
+                    <div class="col-md-12 wow fadeIn mb-2">
                         <div class="text-center">
-                            <h1 class="display-4 font-weight-bold  mb-3 wow fadeInUp">Bạn muốn tìm tên bài hát qua giai điệu?</h1>
+                            <h1 class="display-4 font-italic  mb-3 wow fadeInUp" style="font-family: 'Roboto', sans-serif;">Khám phá, tìm kiếm bài hát dễ dàng</h1>
                             </li>
-                            <h3 class="mb-3 wow fadeInUp" data-wow-delay="0.2s">Có Song Detection</h3>
+                            <!-- <h3 class="mb-3 wow fadeInUp" data-wow-delay="0.2s">Có Song Detection</h3> -->
                             </ul>
                         </div>
                     </div>
@@ -61,12 +72,12 @@
 
     <div class="container" id="container-body">
         <!--Section: Testimonials v.3-->
-        <section class="section team-section text-center pb-3 wow fadeIn" data-wow-delay="0.3s" id="matching">
+        <section class="section team-section text-center pb-4 wow fadeIn" data-wow-delay="0.3s" id="matching">
 
             <!--Section heading-->
-            <h1 class="font-weight-nomal text-center h1 mt-5 mb-3">Ghi âm giai điệu</h1>
+            <h3 class="font-weight-nomal text-center mt-3 mb-3 white-text" style="font-family: 'Roboto', sans-serif;">Ghi âm giai điệu để tìm bài hát</h3>
             <div class="preloader-wrapper big active">
-                <!-- <div class="spinner-layer spinner-yellow-only">
+                <div class="spinner-layer spinner-yellow-only">
                     <div class="circle-clipper left">
                         <div class="circle"></div>
                     </div>
@@ -76,12 +87,14 @@
                     <div class="circle-clipper right">
                         <div class="circle"></div>
                     </div>
-                </div> -->
+                </div>
             </div>
             <!--Grid row-->
             <div class="container">
-                <a type="button" class="btn-floating btn-lg btn-info active" aria-pressed="true" id="record"><i class="fas fa-microphone-alt"></i></a>
-                <a type="button" class="btn-floating btn-lg btn-default active" aria-pressed="true" disabled="true" id="stop"><i class="fas fa-stop"></i></a>
+                <a type="button" class="btn-floating btn-lg btn-info active btn-blue" aria-pressed="true" id="record">
+                    <i class="fas fa-microphone-alt" id ="record_button" style="color: black; background-color: #fc9a35"></i>
+                </a>
+                <a type="button" class="btn-floating btn-lg btn-default active" aria-pressed="true" disabled="true" id="stop"><i class="fas fa-stop" style="color: black; background-color: #fc5335"></i></a>
             </div>
             <!--Grid row-->
             <p>
@@ -89,38 +102,26 @@
             </p>
         </section>
         <!--Section: Testimonials v.3-->
-        <!-- <h2 class="font-italic text-center my-4" style="color: #333" id="song_name">The Most Beautiful Thing - Bruno Major</h2> -->
-        <h3 class="text-center font-italic">Nghe thử bài hát</h3>
-        <!-- <div class="videos-wrapper">
-            <div id="videos" class="d-flex justify-content-center flex-wrap">
-                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/25bquRf-XRw}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/25bquRf-XRw}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/25bquRf-XRw}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/25bquRf-XRw}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/25bquRf-XRw}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/25bquRf-XRw}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/25bquRf-XRw}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
+        <div id="song_place">
         </div>
-        <div class="pb-3">
-            <h3 class=" font-italic" > 
+        <div class="videos-wrapper">
+            <div id="videos" class="d-flex justify-content-center flex-wrap"></div>
+        </div>
+        <div class="pb-2">
+            <h3 class=" font-italic white-text" > 
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z"/>
                 </svg>
                 Danh sách thịnh hành
             </h3>
             <div id="top-videos" class="d-flex" style="overflow-x: scroll;">
-                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/25bquRf-XRw}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/25bquRf-XRw}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/25bquRf-XRw}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/25bquRf-XRw}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/25bquRf-XRw}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/25bquRf-XRw}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/25bquRf-XRw}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/25bquRf-XRw}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/S7ElVoYZN0g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/JxBnLmCOEJ8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/kXpOEzNZ8hQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/cfbNtHNCMBo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/TaJqxfMZMWs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-
-        </div> -->
+        </div>
     </div>
 
 </main>

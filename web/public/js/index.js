@@ -3,54 +3,32 @@ const baseUrl = 'https://www.googleapis.com/youtube/v3/';
 
 $(document).ready(function () {
   $('.preloader-wrapper').hide();
-  $('#song_name').hide();
 });
 
 navigator.mediaDevices.getUserMedia({audio: true}).then(stream => {
     handlerFunction(stream)
 });
 
-// const handleSearchTopVideo = (title = 'lalung') => {
-//   const url = `${baseUrl}search?key=${apiKey}&type=video&part=snippet&q=${title}&maxResults=5`;
-//   $.ajax({
-//     type: 'GET',
-//     url: url,
-//     dataType: 'json',
-//     cache: false,
-//     success: function(result) {
-//       console.log(result.items)
-//       $('.videos-wrapper').prepend(`<h3 class="text-center font-italic">Nghe thử bài hát</h3>`)
-//       result.items.forEach(item => {
-//         const video = `
-//         <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/${item.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-//         `
-//         $('#videos').append(video)
-//       })
-//     }
-//   })
-// }
+const handleSearch = (title = 'lalung') => {
+  const url = `${baseUrl}search?key=${apiKey}&type=video&part=snippet&q=${title}&maxResults=4`;
+  $.ajax({
+    type: 'GET',
+    url: url,
+    dataType: 'json',
+    cache: false,
+    success: function(result) {
+      console.log(result.items)
+      $('.videos-wrapper').prepend(`<h3 class="white-text text-center font-italic" id="nghe_thu">Nghe thử bài hát</h3>`)
+      result.items.forEach(item => {
+        const video = `
+        <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/${item.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        `
+        $('#videos').append(video)
+      })
+    }
+  })
+}
 
-// const handleSearch = (title = 'lalung') => {
-//   const url = `${baseUrl}search?key=${apiKey}&type=video&part=snippet&q=${title}&maxResults=5`;
-//   $.ajax({
-//     type: 'GET',
-//     url: url,
-//     dataType: 'json',
-//     cache: false,
-//     success: function(result) {
-//       console.log(result.items)
-//       $('.videos-wrapper').prepend(`<h3 class="text-center font-italic">Nghe thử bài hát</h3>`)
-//       result.items.forEach(item => {
-//         const video = `
-//         <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/${item.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-//         `
-//         $('#videos').append(video)
-//       })
-//     }
-//   })
-// }
-
-// handleSearch('lalung')
 
 function handlerFunction(stream) {
   rec = new MediaRecorder(stream);
@@ -87,10 +65,8 @@ function sendData(data) {
       {
         console.log(response.song_name);
         let song_name = response.song_name;
-        let item = '<h2 class="font-italic text-center h2 my-5" id="song_name" style="color: #333" >' + song_name + '</h2>';
-        // $('#song_name').innerHTML = song_name
-        $('#container-body').append(item);
-        $('#song_name').show();
+        let item = '<h2 class="white-text font-italic text-center h2 my-5" id="song_name" style="color: #333" >' + song_name + '</h2>';
+        $('#song_place').append(item);
         handleSearch(song_name);
       }
     }
@@ -100,9 +76,13 @@ function sendData(data) {
 }
 
 $('#record').on('click', function () {
+  console.log('start');
   $('#song_name').remove();
+  $('#nghe_thu').remove();
+  $('#videos').empty();
   $('#record').disabled = true;
   $('#record')[0].classList.replace("btn-red", "btn-blue");
+  $('#record_button').css("background-color","red");
   $('#stop').disabled = false;
   audioChunks = [];
   rec.start();
@@ -111,6 +91,7 @@ $('#record').on('click', function () {
 $('#stop').on('click', function () {
   $('#record').disabled = false;
   $('#record')[0].classList.replace("btn-blue", "btn-red");
+  $('#record_button').css("background-color","#fc9a35");
   $('#stop').disabled = true;
   rec.stop();
 });

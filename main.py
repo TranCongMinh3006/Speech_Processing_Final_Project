@@ -24,4 +24,4 @@ if __name__ == '__main__':
     # Recognize audio from a file
     song = analyzer.recognize(FileRecognizer, "D:/XLTN/web/controller/music_matching/uploads/audio.mp3")
     # song = analyzer.recognize(MicrophoneRecognizer)
-    print(song["song_name"].replace("-", " "))
+    print(song["song_name"])
