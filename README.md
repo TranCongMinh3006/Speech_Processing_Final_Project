@@ -37,7 +37,9 @@ Ví dụ như:
     + Hash tần số của các peak với chênh lệch thời gian giữa các peak đó sẽ là fingerprint của bài hát và được lưu vào cơ sở dữ liệu. Ta sẽ hash lần lượt từng peak một với 1 số peak tiếp theo (sắp xếp theo thứ tự thời gian). Nếu thời gian từ peak đó đến peak khác < 1 ngưỡng tự chọn thì sẽ hash frequency của 2 peak đó và chêch lệch thời gian của 2 peak. Giá trị hash đó sẽ được lấy thành 1 tập các fingerprint của bài hát và được lưu vào cơ sở dữ liệu.
     
         hash(frequencies of peaks, time difference between peaks) = fingerprint hash value
-    + 
+        [“frequency of the  anchor”;” frequency of the  point”;”delta time between the anchor and the point”] -> [“absolute time of the anchor in the record”]
+   - So khớp fingerprint của bản nhạc với fingerprint các bài nhạc khác trong cơ sở dữ liệu. Về cơ bản thay vì tìm kiếm nột nốt nhạc có tồn tại trong bài hát hay không, thì thuật toán sẽ tìm kiếm 2 nốt nhạc cách nhau 1 khoảng thời gian delta_time có tồn tại trong bài hát không. Thuật toán sẽ trả về bài hát có tỷ lệ giao lớn nhất.
+
 ### Cài đặt mô hình
     - Trong fingerprint.py:
         + Lấy Spectrogram của bản nhạc : 
@@ -53,8 +55,14 @@ Ví dụ như:
         Nếu thời gian từ peak đó đến peak khác < 200 thì sẽ hash frequency của 2 peak đó và chêch lệch thời gian của 2 peak đó bằng hàm sha1 của hashlib
         Giá trị hash đó sẽ được lấy thành 1 tập các fingerprint của bài hát và được lưu vào cơ sở dữ liệu
         hashlib.sha1(str.encode("%s|%s|%s" % (str(freq1), str(freq2), str(t_delta)))).hexdigest()[0:FINGERPRINT_REDUCTION]
-       
-
+        
+    - So khớp, tìm bài hát giống nhất:
+        * return_matches trong database_sql.py:
+          + Trả về các hash, offset = hash(freq1, freq2, delta_time), t1 của bài hát đó
+          + Lấy hash_, song_id_, offset_ của tất cả các bài hát trong cơ sở dữ liệu
+          + Trả về song_id_, offset - offset_ của (hash == hash_)
+        * align_matches trong music_matching/__init__.py:
+          + Trả về song_id của bài nhạc có giao nhiều fingerprint nhất của tất cả khoảng chênh lệch thời gian
 # Thực nghiệm, đánh giá
 
 # Hướng dẫn sử dụng Web
