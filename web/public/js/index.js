@@ -10,47 +10,47 @@ navigator.mediaDevices.getUserMedia({audio: true}).then(stream => {
     handlerFunction(stream)
 });
 
-const handleSearchTopVideo = (title = 'lalung') => {
-  const url = `${baseUrl}search?key=${apiKey}&type=video&part=snippet&q=${title}&maxResults=5`;
-  $.ajax({
-    type: 'GET',
-    url: url,
-    dataType: 'json',
-    cache: false,
-    success: function(result) {
-      console.log(result.items)
-      $('.videos-wrapper').prepend(`<h3 class="text-center font-italic">Nghe thử bài hát</h3>`)
-      result.items.forEach(item => {
-        const video = `
-        <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/${item.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        `
-        $('#videos').append(video)
-      })
-    }
-  })
-}
+// const handleSearchTopVideo = (title = 'lalung') => {
+//   const url = `${baseUrl}search?key=${apiKey}&type=video&part=snippet&q=${title}&maxResults=5`;
+//   $.ajax({
+//     type: 'GET',
+//     url: url,
+//     dataType: 'json',
+//     cache: false,
+//     success: function(result) {
+//       console.log(result.items)
+//       $('.videos-wrapper').prepend(`<h3 class="text-center font-italic">Nghe thử bài hát</h3>`)
+//       result.items.forEach(item => {
+//         const video = `
+//         <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/${item.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+//         `
+//         $('#videos').append(video)
+//       })
+//     }
+//   })
+// }
 
-const handleSearch = (title = 'lalung') => {
-  const url = `${baseUrl}search?key=${apiKey}&type=video&part=snippet&q=${title}&maxResults=5`;
-  $.ajax({
-    type: 'GET',
-    url: url,
-    dataType: 'json',
-    cache: false,
-    success: function(result) {
-      console.log(result.items)
-      $('.videos-wrapper').prepend(`<h3 class="text-center font-italic">Nghe thử bài hát</h3>`)
-      result.items.forEach(item => {
-        const video = `
-        <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/${item.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        `
-        $('#videos').append(video)
-      })
-    }
-  })
-}
+// const handleSearch = (title = 'lalung') => {
+//   const url = `${baseUrl}search?key=${apiKey}&type=video&part=snippet&q=${title}&maxResults=5`;
+//   $.ajax({
+//     type: 'GET',
+//     url: url,
+//     dataType: 'json',
+//     cache: false,
+//     success: function(result) {
+//       console.log(result.items)
+//       $('.videos-wrapper').prepend(`<h3 class="text-center font-italic">Nghe thử bài hát</h3>`)
+//       result.items.forEach(item => {
+//         const video = `
+//         <iframe style="margin: 20px; border-radius: 5px;" width="400" height="200" src="https://www.youtube.com/embed/${item.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+//         `
+//         $('#videos').append(video)
+//       })
+//     }
+//   })
+// }
 
-handleSearch('lalung')
+// handleSearch('lalung')
 
 function handlerFunction(stream) {
   rec = new MediaRecorder(stream);
@@ -88,6 +88,7 @@ function sendData(data) {
         console.log(response.song_name);
         let song_name = response.song_name;
         let item = '<h2 class="font-italic text-center h2 my-5" id="song_name" style="color: #333" >' + song_name + '</h2>';
+        // $('#song_name').innerHTML = song_name
         $('#container-body').append(item);
         $('#song_name').show();
         handleSearch(song_name);
@@ -113,7 +114,3 @@ $('#stop').on('click', function () {
   $('#stop').disabled = true;
   rec.stop();
 });
-
-
-
-console.log('alo');

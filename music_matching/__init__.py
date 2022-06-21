@@ -49,7 +49,7 @@ class music_matching(object):
         filenames_to_fingerprint = []
         for filename, _ in decoder.find_files(path, extensions):
             if decoder.unique_hash(filename) in self.songhashes_set:
-                print("%s already fingerprinted, continuing..." % filename)
+                # print("%s already fingerprinted, continuing..." % filename)
                 continue
 
             filenames_to_fingerprint.append(filename)

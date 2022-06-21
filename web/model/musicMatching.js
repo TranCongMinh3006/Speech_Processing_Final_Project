@@ -3,7 +3,7 @@ const path = require('path');
 
 let getSongName = (filename) => {
   return new Promise((resolve, reject) => {
-    let pyProgram = spawn('python', ['D:/Downloads/music_matching-master/music_matching-master/main.py', filename]);
+    let pyProgram = spawn('python', ['D:/XLTN/main.py', filename]);
     pyProgram.stdout.on('data', data => {
       let tmp = new Buffer.from(String.fromCharCode.apply(null, data));
       let tmp2 = tmp.toString();

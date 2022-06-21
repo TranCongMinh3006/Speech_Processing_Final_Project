@@ -10,7 +10,7 @@ from music_matching.recognize import FileRecognizer
 from music_matching.recognize import MicrophoneRecognizer
 
 # load config from a JSON file (or anything outputting a python dictionary)
-with open("config.cnf") as f:
+with open("D:/XLTN/config.cnf") as f:
     config = json.load(f)
 
 if __name__ == '__main__':
@@ -19,10 +19,9 @@ if __name__ == '__main__':
 
     # Fingerprint all the mp3's in the directory we give i
     analyzer.fingerprint_directory("D:/XLTN/music_matching/uploads", [".mp3"])
-    # filename = sys.argv[1]
+    filename = sys.argv[1]
     # print(filename)
     # Recognize audio from a file
-    song = analyzer.recognize(FileRecognizer, "./VoiceProcessing/web/controller/music_matching/uploads/emcuangayhomqua.mp3")
+    song = analyzer.recognize(FileRecognizer, "D:/XLTN/web/controller/music_matching/uploads/audio.mp3")
     # song = analyzer.recognize(MicrophoneRecognizer)
-    print(song)
-    # print(song["song_name"].replace("-", " "))
+    print(song["song_name"].replace("-", " "))
