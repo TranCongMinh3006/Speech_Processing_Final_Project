@@ -34,7 +34,7 @@ Ví dụ như:
   - Trích chọn đặc trưng theo miền tần số
     + Lấy Spectrogram của bản nhạc bằng Short Time Fourier Transform - chạy DFT/FFT trên từng window/frame
     + Tìm những điểm đỉnh formant trong spectrogram có giá trị cường độ lớn nhất (cực đại cục bộ địa phương) - Trả về (frequency_idx, time_idx) của điểm đó
-    + Hash tần số của các peak với chênh lệch thời gian giữa các peak đó sẽ là fingerprint của bài hát và được lưu vào cơ sở dữ liệu
+    + Hash tần số của các peak với chênh lệch thời gian giữa các peak đó sẽ là fingerprint của bài hát và được lưu vào cơ sở dữ liệu. Ta sẽ hash lần lượt từng peak một với 1 số peak tiếp theo (sắp xếp theo thứ tự thời gian). Nếu thời gian từ peak đó đến peak khác < 1 ngưỡng tự chọn thì sẽ hash frequency của 2 peak đó và chêch lệch thời gian của 2 peak. Giá trị hash đó sẽ được lấy thành 1 tập các fingerprint của bài hát và được lưu vào cơ sở dữ liệu.
     
         hash(frequencies of peaks, time difference between peaks) = fingerprint hash value
     + 
@@ -49,8 +49,8 @@ Ví dụ như:
             * Chuyển cường độ theo thang loga 
         + Tìm những điểm đỉnh trong spectrogram có giá trị cường độ lớn nhất (cực đại cục bộ địa phương) - Trả về (frequency_idx, time_idx) của điểm đó
           Sử dụng generate_binary_structure, iterate_structure, maximum_filter của thư viện scipy với số lượng hàng xóm (ở các phía) để xét với điểm đó là PEAK_NEIGHBORHOOD_SIZE = 20
-        + Ta sẽ hash lần lượt từng peak một với 15 peak tiếp theo (sắp xếp theo thứ tự thời gian). 
-        Nếu thời gian từ peak đó đến peak khác < 200 thì sẽ hash frequency của 2 peak đó và chêch lệch thời gian của 2 peak đó bằng hàm sha1 của hashlib. 
+        + Ta sẽ hash lần lượt từng peak một với 15 peak tiếp theo (sắp xếp theo thứ tự thời gian)
+        Nếu thời gian từ peak đó đến peak khác < 200 thì sẽ hash frequency của 2 peak đó và chêch lệch thời gian của 2 peak đó bằng hàm sha1 của hashlib
         Giá trị hash đó sẽ được lấy thành 1 tập các fingerprint của bài hát và được lưu vào cơ sở dữ liệu
         hashlib.sha1(str.encode("%s|%s|%s" % (str(freq1), str(freq2), str(t_delta)))).hexdigest()[0:FINGERPRINT_REDUCTION]
        
