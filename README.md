@@ -70,5 +70,7 @@ Ví dụ như:
 
 # Tham khảo
 [Christophe/How does Shazam work](http://coding-geek.com/how-shazam-works/)
+
 [willdrevo/Audio Fingerprint Identifying](https://willdrevo.com/fingerprinting-and-audio-recognition-with-python/)
+
 [itspoma(github)/Audio Fingerprint Identifying](https://github.com/itspoma/audio-fingerprint-identifying-python)
