@@ -66,7 +66,9 @@ Ví dụ như:
           + Trả về song_id của bài nhạc có giao nhiều fingerprint nhất của tất cả khoảng chênh lệch thời gian
 # Thực nghiệm, đánh giá
 - Thời gian trích xuất 150 bài hát để lưu vào cơ sở dữ liệu hết 6 tiếng
-- 
+- Kêt quả thử nghiệm: Với thời gian chạy ghi âm là 4s thuật toán cho độ chính xác là 97%. Từ 6s giây trở lên thuật toán cho ra độ chính xác lên đến 100%.
+- Thời gian truy vấn một bài hát trung bình tốn khoảng 5-6s.
+- link demo :
 # Hướng dẫn sử dụng Web
 - Các ngôn ngữ và công cụ sử dụng cho dự án : python, nodejs, mysql
 - Để chạy được dự án chúng ta cần cài biến mô trường cho ffmeg
@@ -79,7 +81,6 @@ Ví dụ như:
 - cuối cùng chạy lệnh sau đểu bắt đầu chạy dự án:
 
     $ npm start
-
 
 # Tham khảo
 [Christophe/How does Shazam work](http://coding-geek.com/how-shazam-works/)
