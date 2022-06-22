@@ -68,7 +68,7 @@ Ví dụ như:
 - Thời gian trích xuất 150 bài hát để lưu vào cơ sở dữ liệu hết 6 tiếng
 - Kêt quả thử nghiệm: Với thời gian chạy ghi âm là 4s thuật toán cho độ chính xác là 97%. Từ 6s giây trở lên thuật toán cho ra độ chính xác lên đến 100%.
 - Thời gian truy vấn một bài hát trung bình tốn khoảng 5-6s.
-- link demo : https://youtu.be/siRMjHHBbkQ
+- link demo : https://drive.google.com/file/d/1W7HUqsPCRczkbaHOyemO_x-MNjoKKLqK/view
 # Hướng dẫn sử dụng Web
 - Các ngôn ngữ và công cụ sử dụng cho dự án : python, nodejs, mysql
 - Để chạy được dự án chúng ta cần cài biến mô trường cho ffmeg
