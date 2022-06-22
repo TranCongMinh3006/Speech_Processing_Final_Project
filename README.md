@@ -41,6 +41,41 @@ Ví dụ như:
         [“frequency of the  anchor”;” frequency of the  point”;”delta time between the anchor and the point”] -> [“absolute time of the anchor in the record”]
    - So khớp fingerprint của bản nhạc với fingerprint các bài nhạc khác trong cơ sở dữ liệu. Về cơ bản thay vì tìm kiếm nột nốt nhạc có tồn tại trong bài hát hay không, thì thuật toán sẽ tìm kiếm 2 nốt nhạc cách nhau 1 khoảng thời gian delta_time có tồn tại trong bài hát không. Thuật toán sẽ trả về bài hát có tỷ lệ giao lớn nhất.
 
+### Mã giả
+```
+Fingerprint(sound)
+  spectrogram <- STFT(sound, window_size = 4096, Sample_rate = 44100, window_function = Hanning, hop_size = window_size * 0.5)
+  spectrogram <- 10*log_10(spectrogram)
+  peaks <- local_maximum_filter_with_20_samples_from_4_directions_around(spectrogram)
+  peaks <- (frequency_peak, time_peak)
+  sorted_peaks <- sort_by_time(peaks)
+  Array fingerprint 
+  for anchor <- 1 to sorted_peaks.length do
+    for another_peaks <- anchor to anchor+15 do
+      if another_peaks < sorted_peaks.length then
+        fre_1 <- peaks[anchor][frequency_peak]  
+        fre_2 <- peaks[another_peaks][frequency_peak]
+        del_time <- peaks[another_peaks][time_peak] - peaks[anchor][time_peak]
+        if 0 < del_time & del_time > 200 then
+          hashed_fingerprint = (hash(fre_1, fre_2, del_time), peaks[another_peaks][time_peak])
+          Append hashed_fingerprint to fingerprint
+   return fingerprint
+```
+```
+Return_matches_and_align_matches(query_sound)
+  query_fingerprint <- Fingerprint(query_sound)
+  Dict diff_counter
+  for query_hash, query_anchor_time in query_fingerprint do
+    for hash, anchor_time, song_id in Database do
+      if query_hash == hash then
+        if anchor_time - query_anchor_time not in diff_counter | song_id not in diff_counter[anchor_time - query_anchor_time] then
+          initialize diff_counter[anchor_time - query_anchor_time][song_id] <- 0
+        else
+          diff_counter[anchor_time - query_anchor_time][song_id] <- diff_counter[anchor_time - query_anchor_time][song_id] + 1
+   return song_id with max diff_counter[anchor_time - query_anchor_time][song_id]
+```   
+  
+
 ### Cài đặt mô hình
     - Trong fingerprint.py:
         + Lấy Spectrogram của bản nhạc : 
@@ -69,18 +104,21 @@ Ví dụ như:
 - Kêt quả thử nghiệm: Với thời gian chạy ghi âm là 4s thuật toán cho độ chính xác là 97%. Từ 6s giây trở lên thuật toán cho ra độ chính xác lên đến 100%.
 - Thời gian truy vấn một bài hát trung bình tốn khoảng 5-6s.
 - link demo : https://drive.google.com/file/d/1W7HUqsPCRczkbaHOyemO_x-MNjoKKLqK/view
-# Hướng dẫn sử dụng Web
+# Hướng dẫn sử dụng Web 
 - Các ngôn ngữ và công cụ sử dụng cho dự án : python, nodejs, mysql
 - Để chạy được dự án chúng ta cần cài biến mô trường cho ffmeg
 - Để chạy được phần thuật toán chính của dự án ta cần cài các thư viện đã được liệt kê trong file requirement.txt bằng câu lệnh:
- 
+ ```
     $ pip install -r requirement.txt
+```
 - Để chạy phần giao diện web ta cần cài đặt các thư viện cần thiết bằng câu lệnh
-
+```
     $ npm install
+```
 - cuối cùng chạy lệnh sau đểu bắt đầu chạy dự án:
-
+```
     $ npm start
+```
 
 # Tham khảo
 [Christophe/How does Shazam work](http://coding-geek.com/how-shazam-works/)
